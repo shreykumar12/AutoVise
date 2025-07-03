@@ -4,7 +4,7 @@ import joblib
 
 df = pd.read_csv('../data/cars.csv')
 
-x = df[['year', 'mileage', 'msrp']]
+x = df[['year', 'mileage', 'purchsase_price']]
 y = df[['current_value']]
 
 model = LinearRegression()
