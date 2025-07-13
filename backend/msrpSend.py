@@ -2,25 +2,25 @@ import os
 import pandas as pd
 import json
 
-# Determine paths
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # backend folder
 CSV_PATH = os.path.join(BASE_DIR, 'data', 'Expanded_Car_Dataset.csv')
 DEST_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'src')
 OUT_PATH = os.path.join(DEST_DIR, 'msrp_data.json')
 
-# Load dataset
+
 if not os.path.isfile(CSV_PATH):
     raise FileNotFoundError(f"CSV not found at {CSV_PATH}")
 df = pd.read_csv(CSV_PATH)
 
-# Build key and compute average MSRP per key
+
 df['key'] = df['brand'] + '_' + df['model'] + '_' + df['year'].astype(str)
 msrp_map = df.groupby('key')['msrp'].mean().round().astype(int).to_dict()
 
-# Ensure destination exists
+
 os.makedirs(DEST_DIR, exist_ok=True)
 
-# Write JSON
+
 with open(OUT_PATH, 'w') as f:
     json.dump(msrp_map, f, indent=2)
 
