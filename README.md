@@ -15,7 +15,7 @@
 - Dynamic dropdowns + free text input
 - Animated UI with responsive design
 - Pretrained ML pipeline with XGBoost
-- Input validation and error handlin
+- Input validation and error handling
 
 ---
 
