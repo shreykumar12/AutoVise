@@ -1,14 +1,32 @@
 import pandas as pd 
-from sklearn.linear_model import LinearRegression
+from xgboost import XGBRegressor
 import joblib
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
 
-df = pd.read_csv('../data/cars.csv')
+df = pd.read_csv('../data/Expanded_Car_Dataset.csv')
 
-x = df[['year', 'mileage', 'purchsase_price']]
-y = df[['current_value']]
+y = df['current_value']
 
-model = LinearRegression()
-model.fit(x, y)
+x = df[['brand', 'model', 'year', 'mileage', 'drivetrain', 'msrp',]]
 
-joblib.dump(model, 'model.pkl')
+categorical_features = ['brand', 'model', 'drivetrain']
+numeric_features = ['year', 'mileage', 'msrp',]
+
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+    ],
+    remainder='passthrough'
+)
+
+pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('regressor', XGBRegressor(n_estimators=100, random_state=42, verbosity=0))
+])
+
+pipeline.fit(x, y)
+
+joblib.dump(pipeline, 'model.pkl')
 print('Model trained and saved as model.pkl')

@@ -25,6 +25,39 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            animation: {
+              'gradient-x': 'gradientX 8s ease infinite',
+              'fade-in':    'fadeIn 1s ease-out',
+              'fade-down':  'fadeDown 0.6s ease-out'
+            },
+            keyframes: {
+              gradientX: {
+                '0%, 100%': { backgroundPosition: '0% 50%' },
+                '50%':      { backgroundPosition: '100% 50%' }
+              },
+              fadeIn: {
+                '0%':   { opacity: 0 },
+                '100%': { opacity: 1 }
+              },
+              fadeDown: {
+                '0%':   { opacity: 0, transform: 'translateY(-20px)' },
+                '100%': { opacity: 1, transform: 'translateY(0)' }
+              }
+            },
+            backgroundSize: {
+              '200%': '200% 200%'
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="%PUBLIC_URL%/index.css" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
