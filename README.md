@@ -1,7 +1,6 @@
 
 <img src="frontend/src/logo.png" alt="App Screenshot" width="200">
 
-**AutoVise** is a full-stack machine learning web application that estimates the current market value of a used car based on its specifications. It uses a trained XGBoost regression model and a clean React + Tailwind CSS frontend.
 ## 🧭 Demo
 
 ![App Screenshot](frontend/public/demo.png)
