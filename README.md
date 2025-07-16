@@ -1,5 +1,4 @@
-
-# 🚗 AutoVise
+![AutoVise Logo](frontend/src/logo.png)
 
 ## 🧭 Demo
 
