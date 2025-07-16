@@ -1,5 +1,5 @@
 ![AutoVise Logo](frontend/src/logo.png)
-<img src="frontend/public/demo.png" alt="App Screenshot" width="400">
+<img src="frontend/src/logo.png" alt="App Screenshot" width="400">
 
 ## 🧭 Demo
 
