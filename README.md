@@ -56,24 +56,5 @@ npm start
 
 ---
 
-## 📁 Project Structure
-
-```
-AutoVise/
-├── backend/
-│   ├── app.py
-│   ├── model.pkl
-│   └── requirements.txt
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   └── package.json
-├── data/
-│   └── Expanded_Car_Dataset.csv
-```
 
 ---
-
----
-
-Made with ❤️ by Shrey Kumar
