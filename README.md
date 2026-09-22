@@ -20,7 +20,10 @@ You don't need to know the car's original MSRP. The frontend fills it in from a 
 | Features | brand, model, drivetrain (one-hot) · year, mileage, MSRP |
 | Data | 75,000 listings · 13 brands · 41 models · 2005–2024 |
 | **R²** | **0.97** on a 20% held-out split |
-| **MAE** | **~$1,220** (median car value ≈ $13,900) |
+| **MAE** | **~$1,290** (median car value ≈ $13,900) |
+| vs. linear regression | 54% lower MAE (baseline: R² 0.82, MAE ~$2,800) |
+| Unseen car models | R² 0.88 when whole models are held out of training |
+| Mileage constraint | Predicted value never rises with mileage (monotonic constraint; 96% of cars violated this before) |
 
 ## Stack
 
@@ -42,7 +45,7 @@ npm install
 npm start
 ```
 
-To retrain the model on the dataset, run `python train_model.py` from `backend/`. This regenerates `model.pkl`.
+From `backend/`, `python train_model.py` retrains the model and regenerates `model.pkl`, and `python evaluate.py` reproduces the metrics above.
 
 ## API
 
@@ -55,7 +58,7 @@ Content-Type: application/json
 ```
 
 ```json
-{ "predicted_value": 4426.09 }
+{ "predicted_value": 4874.15 }
 ```
 
 ## Project structure
@@ -63,7 +66,9 @@ Content-Type: application/json
 ```
 backend/
   app.py            Flask API
+  pipeline.py       feature encoding + XGBoost model definition
   train_model.py    trains the pipeline and saves model.pkl
+  evaluate.py       held-out metrics, baselines, mileage constraint check
   msrpSend.py       builds the MSRP lookup used by the frontend
 frontend/src/
   App.js            form, MSRP estimation, API call
