@@ -1,8 +1,4 @@
 <p align="center">
-  <img src="frontend/src/logo.png" alt="AutoVise" width="180">
-</p>
-
-<p align="center">
   Used-car price estimation with an XGBoost model behind a Flask API and a React frontend.
 </p>
 
